@@ -1,0 +1,22 @@
+<div class="max-w-3xl mx-auto">
+  <table class="w-full divide-y divide-gray-200">
+    <thead class="bg-gray-50">
+      <tr>
+        <th scope="col" class="w-16 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+        <th scope="col" class="w-1/3 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+        <th scope="col" class="w-32 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Since</th>
+        <th scope="col" class="w-24 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Commits</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white divide-y divide-gray-200">
+      <% contributors.each_with_index do |contributor, i| %>
+        <tr class="hover:bg-gray-50">
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#<%= i + 1 %></td>
+          <td class="px-6 py-4 text-sm font-medium text-gray-900 break-words"><a href="contributors/<%= contributor.name_path %>.html" class="text-sky-600 hover:text-sky-700 hover:underline"><%= contributor.names.join(", ") %></a></td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= contributor.commits.first&.time&.strftime("%Y-%m-%d") %></td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= contributor.commits_count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
