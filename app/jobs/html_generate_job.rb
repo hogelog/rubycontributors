@@ -14,13 +14,14 @@ class HtmlGenerateJob < ApplicationJob
     )
     File.write("tmp/public/index.html", index_html)
 
-    FileUtils.rm_rf("tmp/public/contributors/*.html")
+    FileUtils.rm(Dir.glob("tmp/public/contributors/*.html"))
     contributors.each do |contributor|
       show_html = ApplicationController.renderer.render_to_string(
         template: "public/contributors/show",
         locals: { contributor: }
       )
-      File.write("tmp/public/contributors/#{contributor.name_path}.html", show_html)
+      html_path = "tmp/public/contributors/#{contributor.name_path}.html"
+      File.write(html_path, show_html)
     end
   end
 end
