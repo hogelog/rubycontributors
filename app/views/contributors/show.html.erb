@@ -20,14 +20,6 @@
         </div>
         <div class="flex items-center gap-4">
           <%= link_to 'Preview', preview_contributor_path(@contributor.latest_name), class: "text-indigo-600 hover:text-indigo-900" %>
-          <% if @similar_contributors.any? %>
-            <%= button_to contributor_path(@contributor, target_id: @similar_contributors.first.id),
-                method: :patch,
-                class: "inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                data: { confirm: "Are you sure you want to merge this contributor?" } do %>
-              Merge
-            <% end %>
-          <% end %>
         </div>
       </div>
 
@@ -126,4 +118,13 @@
       </div>
     </div>
   <% end %>
+</div>
+
+<div class="container mx-auto px-4">
+  <div class="flex justify-end">
+    <%= form_with url: contributor_path(@contributor), method: :patch, class: "flex items-center gap-2 bg-white shadow-md rounded-lg p-4" do |f| %>
+      <%= f.number_field :target_id, placeholder: "Target ID", class: "w-24 px-2 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" %>
+      <%= f.submit "Merge", class: "inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { confirm: "Are you sure you want to merge this contributor?" } %>
+    <% end %>
+  </div>
 </div> 
