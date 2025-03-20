@@ -44,9 +44,7 @@
           <h3 class="text-sm font-medium text-gray-500">GitHub</h3>
           <div class="mt-1 space-y-1">
             <% @contributor.logins.each do |login| %>
-              <%= link_to "https://github.com/#{login}", target: "_blank", class: "block text-sm text-indigo-600 hover:text-indigo-900" do %>
-                <%= login %>
-              <% end %>
+              <%= link_to login, "https://github.com/#{login}", class: "block text-sm text-indigo-600 hover:text-indigo-900" %>
             <% end %>
           </div>
         </div>
