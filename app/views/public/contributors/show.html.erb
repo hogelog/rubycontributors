@@ -23,7 +23,9 @@
     <tbody class="bg-white divide-y divide-gray-200">
       <% contributor.commits.each do |commit| %>
         <tr class="hover:bg-gray-50">
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= commit.hash %></td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+            <%= link_to commit.sha, "https://github.com/ruby/ruby/commit/#{commit.sha}", class: "text-sky-600 hover:text-sky-700 hover:underline", target: "_blank" %>
+          </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= commit.time.strftime("%Y-%m-%d") %></td>
           <td class="px-6 py-4 text-sm text-gray-900"><%= commit.message %></td>
         </tr>
