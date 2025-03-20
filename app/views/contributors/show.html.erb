@@ -11,6 +11,7 @@
     <div class="p-6">
       <div class="flex justify-between items-start mb-4">
         <h2 class="text-lg font-semibold text-gray-900">ID: <%= @contributor.id %></h2>
+        <%= link_to 'Preview', preview_contributor_path(@contributor.latest_name), class: "text-indigo-600 hover:text-indigo-900" %>
       </div>
 
       <div class="space-y-4">
