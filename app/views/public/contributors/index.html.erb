@@ -12,7 +12,16 @@
       <% contributors.each_with_index do |contributor, i| %>
         <tr class="hover:bg-gray-50">
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#<%= i + 1 %></td>
-          <td class="px-6 py-4 text-sm font-medium text-gray-900 break-words"><a href="contributors/<%= contributor.name_path %>.html" class="text-sky-600 hover:text-sky-700 hover:underline"><%= contributor.names.join(", ") %></a></td>
+          <td class="px-6 py-4 text-sm font-medium text-gray-900 break-words">
+            <div class="flex items-center gap-2">
+              <a href="contributors/<%= contributor.name_path %>.html" class="text-sky-600 hover:text-sky-700 hover:underline"><%= contributor.names.join(", ") %></a>
+              <% if contributor.bot? %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  Bot
+                </span>
+              <% end %>
+            </div>
+          </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= contributor.commits.first&.time&.strftime("%Y-%m-%d") %></td>
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><%= contributor.commits_count %></td>
         </tr>
