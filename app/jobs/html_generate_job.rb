@@ -21,7 +21,11 @@ class HtmlGenerateJob < ApplicationJob
         locals: { contributor: }
       )
       html_path = "tmp/public/contributors/#{contributor.name_path}.html"
-      File.write(html_path, show_html)
+      if File.exist?(html_path)
+        STDERR.puts "File already exists: #{html_path}"
+      else
+        File.write(html_path, show_html)
+      end
     end
   end
 end
