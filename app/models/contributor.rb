@@ -20,7 +20,7 @@ class Contributor < ApplicationRecord
     end
 
     # Fetch GitHub login information
-    login = Github.fetch_login(sha)
+    login = Github.fetch_login(sha, name)
 
     if login
       # Search for existing contributor by login
