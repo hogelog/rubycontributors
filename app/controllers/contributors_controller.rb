@@ -6,6 +6,7 @@ class ContributorsController < ApplicationController
   end
 
   def show
+    @similar_contributors = @contributor.similar_contributors
   end
 
   private

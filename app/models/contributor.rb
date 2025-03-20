@@ -72,4 +72,40 @@ class Contributor < ApplicationRecord
   def name_path
     @name_path ||= URI.encode_uri_component(latest_name.downcase.gsub(" ", "-"))
   end
+
+  def similar_contributors
+    candidates = []
+
+    candidates += similar_by_email_local_part unless emails.empty?
+    candidates += similar_by_name unless names.empty?
+
+    candidates.uniq
+  end
+
+  private
+
+  def similar_by_email_local_part
+    return [] if emails.empty?
+
+    candidates = []
+    email_local_parts = emails.map { |email| email.split('@').first }
+    email_local_parts.map do |local|
+      candidates += self.class.joins(:contributor_emails)
+        .where.not(id: id)
+        .where("contributor_emails.email LIKE ?", "#{local}@%")
+        .distinct
+        .to_a
+    end
+
+    candidates
+  end
+
+  def similar_by_name
+    return [] if names.empty?
+
+    self.class.joins(:contributor_names)
+      .where.not(id: id)
+      .where(contributor_names: { name: names })
+      .distinct
+  end
 end 
