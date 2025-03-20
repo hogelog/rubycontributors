@@ -18,7 +18,17 @@
             </span>
           <% end %>
         </div>
-        <%= link_to 'Preview', preview_contributor_path(@contributor.latest_name), class: "text-indigo-600 hover:text-indigo-900" %>
+        <div class="flex items-center gap-4">
+          <%= link_to 'Preview', preview_contributor_path(@contributor.latest_name), class: "text-indigo-600 hover:text-indigo-900" %>
+          <% if @similar_contributors.any? %>
+            <%= button_to contributor_path(@contributor, target_id: @similar_contributors.first.id),
+                method: :patch,
+                class: "inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                data: { confirm: "Are you sure you want to merge this contributor?" } do %>
+              Merge
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
       <div class="space-y-4">
@@ -60,12 +70,20 @@
           <div class="bg-white shadow-md rounded-lg overflow-hidden">
             <div class="p-6">
               <div class="mb-4">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-semibold text-gray-900">ID: <%= contributor.id %></h3>
-                  <% if contributor.bot? %>
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                      Bot
-                    </span>
+                <div class="flex justify-between items-start">
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-lg font-semibold text-gray-900">ID: <%= contributor.id %></h3>
+                    <% if contributor.bot? %>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        Bot
+                      </span>
+                    <% end %>
+                  </div>
+                  <%= button_to contributor_path(@contributor, target_id: contributor.id),
+                      method: :patch,
+                      class: "inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                      data: { confirm: "Are you sure you want to merge this contributor?" } do %>
+                    Merge
                   <% end %>
                 </div>
               </div>

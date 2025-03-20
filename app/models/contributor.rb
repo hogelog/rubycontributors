@@ -5,9 +5,9 @@ class Contributor < ApplicationRecord
 
   has_many :commits
 
-  has_many :contributor_logins
-  has_many :contributor_names
-  has_many :contributor_emails
+  has_many :contributor_logins, dependent: :destroy
+  has_many :contributor_names, dependent: :destroy
+  has_many :contributor_emails, dependent: :destroy
 
   def self.find_or_upsert_by_commit!(sha:, name:, email:)
     contributor_email = ContributorEmail.find_by(email:)
@@ -80,6 +80,33 @@ class Contributor < ApplicationRecord
     candidates += similar_by_name unless names.empty?
 
     candidates.uniq
+  end
+
+  def merge!(other)
+    transaction do
+      other.contributor_emails.each do |email|
+        contributor_emails.create!(email: email.email)
+      end
+
+      other.contributor_names.each do |name|
+        contributor_names.create!(name: name.name) unless names.include?(name.name)
+      end
+
+      other.contributor_logins.each do |login|
+        contributor_logins.create!(login: login.login)
+      end
+
+      other.commits.each do |commit|
+        commit.update!(contributor: self)
+      end
+
+      @emails = nil
+      @names = nil
+      @logins = nil
+      @name_path = nil
+
+      other.destroy!
+    end
   end
 
   private
