@@ -1,6 +1,6 @@
 class Preview::ContributorsController < ApplicationController
   def index
-    contributors = Contributor
+    contributors = Contributor.with_commits_count
       .select("contributors.*, COUNT(commits.id) as commits_count")
       .left_joins(:commits)
       .group(:id)
