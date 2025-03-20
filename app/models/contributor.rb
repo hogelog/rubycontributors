@@ -70,7 +70,7 @@ class Contributor < ApplicationRecord
   end
 
   def name_path
-    @name_path ||= URI.encode_uri_component(latest_name.downcase.gsub(" ", "-"))
+    @name_path ||= latest_name.downcase.gsub(" ", "-")
   end
 
   def similar_contributors

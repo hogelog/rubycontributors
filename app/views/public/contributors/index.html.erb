@@ -14,7 +14,7 @@
           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#<%= i + 1 %></td>
           <td class="px-6 py-4 text-sm font-medium text-gray-900 break-words">
             <div class="flex items-center gap-2">
-              <a href="contributors/<%= contributor.name_path %>.html" class="text-sky-600 hover:text-sky-700 hover:underline"><%= contributor.names.join(", ") %></a>
+              <a href="/contributors/<%= URI.encode_uri_component(contributor.name_path) %>.html" class="text-sky-600 hover:text-sky-700 hover:underline"><%= contributor.names.join(", ") %></a>
               <% if contributor.bot? %>
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                   Bot
