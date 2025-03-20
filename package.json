@@ -1,0 +1,21 @@
+{
+  "name": "rubycontributors",
+  "version": "1.0.0",
+  "private": true,
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "deploy": "npm run build && npm run pages:deploy",
+    "build": "bundle exec rails runner 'HtmlGenerateJob.perform_now'",
+    "pages:deploy": "wrangler pages deploy tmp/public --project-name rubycontributors"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "wrangler": "^4.2.0"
+  }
+}
