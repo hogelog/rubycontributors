@@ -1,6 +1,8 @@
 require "github"
 
 class Contributor < ApplicationRecord
+  SVN_SUFFIX = "@b2dd03c8-39d4-4d8f-98ff-823fe69b080e"
+
   has_many :commits
 
   has_many :contributor_logins

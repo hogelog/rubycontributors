@@ -50,7 +50,9 @@
               <h3 class="text-sm font-medium text-gray-500">GitHub</h3>
               <div class="mt-1 space-y-1">
                 <% contributor.logins.each do |login| %>
-                  <p class="text-sm text-gray-900"><%= login %></p>
+                  <%= link_to "https://github.com/#{login}", target: "_blank", class: "block text-sm text-indigo-600 hover:text-indigo-900" do %>
+                    <%= login %>
+                  <% end %>
                 <% end %>
               </div>
             </div>
