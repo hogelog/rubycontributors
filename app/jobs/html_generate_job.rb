@@ -7,6 +7,7 @@ class HtmlGenerateJob < ApplicationJob
       .left_joins(:commits)
       .group(:id)
       .order(commits_count: :desc)
+      .preload(:contributor_names, :contributor_emails, :contributor_logins, :commits)
       .reject {|contributor| contributor.bot? }
 
     index_html = ApplicationController.renderer.render_to_string(

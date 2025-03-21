@@ -5,6 +5,7 @@ class Preview::ContributorsController < ApplicationController
       .left_joins(:commits)
       .group(:id)
       .order(commits_count: :desc)
+      .preload(:contributor_names, :contributor_emails, :contributor_logins, :commits)
       .reject {|contributor| contributor.bot? }
 
     render "public/contributors/index", locals: { contributors: }
