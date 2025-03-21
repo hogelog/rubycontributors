@@ -51,5 +51,16 @@
 
       <%= yield %>
     </main>
+
+    <% # Only show the footer on the public pages %>
+    <% if controller.instance_of?(ApplicationController) %>
+      <footer class="mt-auto">
+        <div class="max-w-7xl mx-auto pb-4 px-4">
+          <div class="text-sm text-gray-400 text-right">
+            Last updated: <%= Time.current.strftime("%Y-%m-%d %H:%M %Z") %>
+          </div>
+        </div>
+      </footer>
+    <% end %>
   </body>
 </html>
