@@ -49,8 +49,8 @@
       <%= yield %>
     </main>
 
-    <% # Only show the footer on the public pages %>
-    <% if controller.instance_of?(ApplicationController) %>
+    <% # Only show the footer on the static pages %>
+    <% if controller.class.name.start_with?("Static::") %>
       <footer class="mt-auto">
         <div class="max-w-7xl mx-auto pb-4 px-4">
           <div class="text-sm text-gray-400 text-right">

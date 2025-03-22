@@ -1,4 +1,4 @@
-class Preview::ContributorsController < ApplicationController
+class Static::ContributorsController < ApplicationController
   def index
     contributors = Contributor
       .select("contributors.*, COUNT(commits.id) as commits_count")
@@ -8,11 +8,11 @@ class Preview::ContributorsController < ApplicationController
       .preload(:contributor_names, :contributor_emails, :contributor_logins, :commits)
       .reject {|contributor| contributor.bot? }
 
-    render "public/contributors/index", locals: { contributors: }
+    render "static/contributors/index", locals: { contributors: }
   end
 
   def show
     contributor = ContributorName.find_by_name!(params[:id]).contributor
-    render "public/contributors/show", locals: { contributor: }
+    render "static/contributors/show", locals: { contributor: }
   end
 end 
