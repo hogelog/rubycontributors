@@ -42,10 +42,11 @@
 
             <div>
               <h3 class="text-sm font-medium text-gray-500">GitHub</h3>
-              <div class="mt-1 space-y-1">
+              <div class="mt-1 space-y-2">
                 <% contributor.logins.each do |login| %>
-                  <%= link_to "https://github.com/#{login}", target: "_blank", class: "block text-sm text-indigo-600 hover:text-indigo-900" do %>
-                    <%= login %>
+                  <%= link_to "https://github.com/#{login}", target: "_blank", class: "block text-sm font-medium text-gray-900 hover:text-gray-700 hover:underline inline-flex items-center" do %>
+                    <img src="/github.svg" class="w-4 h-4 mr-1.5" alt="GitHub">
+                    @<%= login %>
                   <% end %>
                 <% end %>
               </div>

@@ -9,6 +9,16 @@
           </span>
         <% end %>
       </div>
+      <% if contributor.logins.any? %>
+        <div class="mt-2 text-sm text-gray-600">
+          <% contributor.logins.each do |login| %>
+            <%= link_to "https://github.com/#{login}", class: "text-gray-900 hover:text-gray-700 hover:underline mr-2 inline-flex items-center", target: "_blank" do %>
+              <img src="/github.svg" class="w-4 h-4 mr-1" alt="GitHub">
+              @<%= login %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </h1>
   </div>
 
