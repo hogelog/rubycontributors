@@ -19,7 +19,7 @@ class SiteGenerateJob < ApplicationJob
     )
     File.write("tmp/public/index.html", index_html)
 
-    FileUtils.rm(Dir.glob("tmp/public/contributors/*.html"))
+    FileUtils.mkdir("tmp/public/contributors")
     contributors.each do |contributor|
       show_html = ApplicationController.renderer.render_to_string(
         template: "public/contributors/show",

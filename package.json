@@ -9,7 +9,7 @@
   },
   "scripts": {
     "deploy": "npm run build && npm run pages:deploy",
-    "build": "bundle exec rails runner 'HtmlGenerateJob.perform_now'",
+    "build": "bundle exec rails runner 'SiteGenerateJob.perform_now'",
     "pages:deploy": "wrangler pages deploy tmp/public --project-name rubycontributors"
   },
   "keywords": [],
