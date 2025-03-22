@@ -2,15 +2,44 @@
   <div class="px-4 mx-2 bg-white shadow-sm">
     <ul class="space-y-2">
       <li>
-        <a href="/" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150">
-          Contributors
+        <a href="/" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150" data-path="/">
+          All time
         </a>
       </li>
       <li>
-        <a href="/about" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150">
+        <a href="/this-week" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150" data-path="/this-week">
+          This week
+        </a>
+      </li>
+      <li>
+        <a href="/this-month" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150" data-path="/this-month">
+          This month
+        </a>
+      </li>
+      <li>
+        <a href="/this-year" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150" data-path="/this-year">
+          This year
+        </a>
+      </li>
+      <li>
+        <a href="/about" class="nav-link block px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-150" data-path="/about">
           About
         </a>
       </li>
     </ul>
   </div>
 </nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+      if (link.getAttribute('data-path') === currentPath) {
+        link.classList.add('bg-gray-100', 'text-gray-900');
+        link.classList.remove('text-gray-500', 'hover:text-gray-900', 'hover:bg-gray-50');
+      }
+    });
+  });
+</script>
