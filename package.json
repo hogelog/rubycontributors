@@ -8,9 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "deploy": "npm run build && npm run pages:deploy",
-    "build": "bundle exec rails runner 'SiteGenerateJob.perform_now'",
-    "pages:deploy": "wrangler pages deploy tmp/public --project-name rubycontributors"
+    "deploy": "wrangler pages deploy tmp/public --project-name rubycontributors"
   },
   "keywords": [],
   "author": "",

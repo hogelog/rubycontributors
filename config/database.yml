@@ -13,4 +13,4 @@ test:
 
 production:
   <<: *default
-  # database: path/to/persistent/storage/production.sqlite3
+  url: <%= ENV.fetch("DATABASE_URL", "storage/production.sqlite3") %>

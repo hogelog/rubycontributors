@@ -4,7 +4,7 @@ class SiteGenerateJob < ApplicationJob
   def perform
     FileUtils.rm_rf(Dir.glob("tmp/public/**/*"))
     FileUtils.mkdir_p("tmp/public/contributors")
-    FileUtils.cp_r("public/", "tmp/public/")
+    FileUtils.cp_r("public/", "tmp/")
 
     about_html = Static::AboutsController.renderer.render_to_string(
       template: "static/abouts/show",

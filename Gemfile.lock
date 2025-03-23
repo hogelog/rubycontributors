@@ -88,6 +88,7 @@ GEM
     debug (1.10.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.1.7)
     drb (2.2.1)
     erubi (1.13.1)
     globalid (1.2.1)
@@ -231,10 +232,11 @@ DEPENDENCIES
   bootsnap
   brakeman
   debug
+  dotenv
   puma (>= 5.0)
   rails (~> 8.0.2)
   sqlite3 (>= 2.1)
   web-console
 
 BUNDLED WITH
-   2.6.0.dev
+   2.6.2

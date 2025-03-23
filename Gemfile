@@ -6,6 +6,8 @@ gem "puma", ">= 5.0"
 
 gem "bootsnap", require: false
 
+gem "dotenv"
+
 group :development, :test do
   gem "debug"
 
