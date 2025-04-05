@@ -3,7 +3,7 @@ class CommitImportJob < ApplicationJob
 
   def perform
     commit_logs = []
-    revision_range = Commit.last&.sha ? "#{Commit.last.sha}..HEAD" : "HEAD"
+    revision_range = Commit.last&.sha ? "#{Commit.last.sha}..FETCH_HEAD" : "FETCH_HEAD"
     Dir.chdir(RUBY_REPO_DIR) do
       system("git fetch", exception: true)
       IO.popen(%[git log #{revision_range} --pretty=format:"%H\t%at\t%an\t%ae\t%s"], exception: true) do |io|
